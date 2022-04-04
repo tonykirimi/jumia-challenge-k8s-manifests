@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: validator-backend
+    app.kubernetes.io/instance: jumia-devops
   name: backend
   namespace: jumia-devops
 spec:
