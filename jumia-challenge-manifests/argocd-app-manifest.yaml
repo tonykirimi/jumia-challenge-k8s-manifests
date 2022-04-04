@@ -7,7 +7,7 @@ spec:
   destination:
     namespace: jumia-devops
     server: https://kubernetes.default.svc 
-  project: jumia-devops
+  project: default
   source: 
     path: jumia-challenge-manifests
     repoURL: https://github.com/tonykirimi/jumia-challenge-k8s-manifests.git
