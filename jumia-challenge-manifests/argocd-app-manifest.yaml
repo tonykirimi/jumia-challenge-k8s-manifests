@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jumia-devops
+  namespace: argocd
+spec:
+  destination:
+    namespace: jumia-devops
+    server: https://kubernetes.default.svc 
+  project: jumia-devops
+  source: 
+    path: jumia-challenge-manifests
+    repoURL: https://github.com/tonykirimi/jumia-challenge-k8s-manifests.git
+  syncPolicy: 
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
