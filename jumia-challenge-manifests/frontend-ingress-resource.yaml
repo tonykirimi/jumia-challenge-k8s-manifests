@@ -5,9 +5,11 @@ metadata:
   namespace: jumia-devops
   annotations:
    kubernetes.io/ingress.class: "nginx"
+  labels:
+   app.kubernetes.io/instance: jumia-devops
 spec:
   rules:
-  - host: tizok8s.com
+  - host: frontend.tizok8s.com
     http:
       paths:
       - path: /
