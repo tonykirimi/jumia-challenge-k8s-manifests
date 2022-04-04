@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: validator-frontend
+  name: validator-frontend
+  namespace: jumia-devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: dev
+      tier: frontend
+  template:
+   metadata:
+    labels:
+     env: dev
+     tier: frontend
+    name: validator-frontend-image
+   spec:
+    containers:
+    - image: 992122884453.dkr.ecr.eu-central-1.amazonaws.com/validator-frontend-image
+      name: validator-frontend-image
+      ports:
+      - name: frontend
+        containerPort: 8181
+      resources:
+       limits:
+        cpu: "1"
+        memory: 1Gi
+       requests:
+        cpu: 300m
+        memory: 300Mi
+    initContainers:
+     - name: init-myservice
+       image: busybox:1.28
+       command: ['sh', '-c', 'until nc -zv terraform-20220403102412066100000001.ceg9ua9ljrsl.eu-central-1.rds.amazonaws.com:5432; do echo waiting for myservice; sleep 2; done;']
+    restartPolicy: Always
+    serviceAccountName: default
+ 
+

@@ -1,0 +1,18 @@
+controller:
+  kind: DaemonSet        
+  service:
+    ports:
+      http: 80
+      https: 443
+    targetPorts:
+      http: http
+      https: https
+    type: NodePort
+    nodePorts:
+      http: 30080
+      https: 30443
+  resources:
+    requests:
+      memory: 200Mi
+      cpu: 100m 
+  
